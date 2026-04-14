@@ -1,6 +1,6 @@
 import path from 'path';
-const { google } from 'googleapis';
-const { fileURLToPath } from 'url';
+import { google } from 'googleapis';
+import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
