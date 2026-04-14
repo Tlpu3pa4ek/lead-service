@@ -1,5 +1,5 @@
-const { sendTelegramMessage } = require('../services/telegram.service');
-const { saveToSheets } = require('../services/sheets.service');
+import { sendTelegramMessage } from '../services/telegram.service.js';
+import { saveToSheets } from '../services/sheets.service.js';
 
 const createLead = async (req, res) => {
     try {
@@ -39,4 +39,4 @@ const createLead = async (req, res) => {
     }
 };
 
-module.exports = { createLead };
+export default createLead;
