@@ -1,5 +1,8 @@
+import express from 'express';
+import cors from 'cors';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import leadRoutes from './routes/lead.routes.js'
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,11 +18,6 @@ if (!process.env.GOOGLE_SHEET_ID?.trim()) {
         'Info: GOOGLE_SHEET_ID is empty — Telegram only until you set the spreadsheet ID in .env (URL fragment between /d/ and /edit).'
     );
 }
-
-const express = require('express');
-const cors = require('cors');
-
-const leadRoutes = require('./routes/lead.routes');
 
 const app = express();
 
