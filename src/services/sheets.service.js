@@ -25,7 +25,7 @@ const sheets = google.sheets({ version: 'v4', auth });
 /**
  * @param {{ name: string, phone: string, source?: string }} lead
  */
-const saveToSheets = async (lead) => {
+export const saveToSheets = async (lead) => {
     const spreadsheetId = process.env.GOOGLE_SHEET_ID?.trim();
     if (!spreadsheetId) {
         throw new Error('GOOGLE_SHEET_ID is not set in .env');
@@ -50,4 +50,3 @@ const saveToSheets = async (lead) => {
         },
     });
 };
-
