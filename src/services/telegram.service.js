@@ -1,6 +1,6 @@
-const axios = require('axios');
+import axios from 'axios';
 
-const sendTelegramMessage = async (text) => {
+export const sendTelegramMessage = async (text) => {
     const token = process.env.TELEGRAM_BOT_TOKEN;
     const chatId = process.env.TELEGRAM_CHAT_ID;
 
@@ -11,5 +11,3 @@ const sendTelegramMessage = async (text) => {
         text,
     });
 };
-
-module.exports = { sendTelegramMessage };
