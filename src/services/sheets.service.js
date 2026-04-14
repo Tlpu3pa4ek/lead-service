@@ -1,5 +1,9 @@
-const path = require('path');
-const { google } = require('googleapis');
+import path from 'path';
+const { google } from 'googleapis';
+const { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const projectRoot = path.join(__dirname, '..', '..');
 
@@ -47,4 +51,3 @@ const saveToSheets = async (lead) => {
     });
 };
 
-module.exports = { saveToSheets };
