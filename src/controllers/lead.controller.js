@@ -1,7 +1,7 @@
 import { sendTelegramMessage } from '../services/telegram.service.js';
 import { saveToSheets } from '../services/sheets.service.js';
 
-const createLead = async (req, res) => {
+export const createLead = async (req, res) => {
     try {
         const { name, phone, source } = req.body;
 
@@ -39,4 +39,3 @@ const createLead = async (req, res) => {
     }
 };
 
-export default createLead;
