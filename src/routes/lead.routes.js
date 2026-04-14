@@ -1,8 +1,8 @@
-const express = require('express');
-const router = express.Router();
+import express from 'express';
+import { createLead } from '../controllers/lead.controller.js'
 
-const { createLead } = require('../controllers/lead.controller');
+const router = express.Router();
 
 router.post('/', createLead);
 
-module.exports = router;
+export default router;
