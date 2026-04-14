@@ -1,1 +1,280 @@
 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Тестовая заявка — Lead Service</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg0: #0c1222;
+      --bg1: #121a2e;
+      --card: rgba(22, 32, 56, 0.72);
+      --stroke: rgba(255, 255, 255, 0.08);
+      --text: #e8edf7;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --success: #34d399;
+      --err: #fb7185;
+      --radius: 18px;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "DM Sans", system-ui, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(56, 189, 248, 0.22), transparent 55%),
+        radial-gradient(900px 500px at 100% 20%, rgba(167, 139, 250, 0.18), transparent 50%),
+        linear-gradient(165deg, var(--bg0), var(--bg1) 45%, #0a0f1a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 18px;
+    }
+
+    .wrap {
+      width: min(440px, 100%);
+    }
+
+    h1 {
+      margin: 0 0 22px;
+      font-size: 1.65rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      padding: 26px 24px 22px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #cbd5e1;
+      margin-bottom: 8px;
+    }
+
+    .field {
+      margin-bottom: 18px;
+    }
+
+    input {
+      width: 100%;
+      padding: 13px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(8, 12, 24, 0.55);
+      color: var(--text);
+      font-size: 1rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    }
+
+    input::placeholder {
+      color: #64748b;
+    }
+
+    input:hover {
+      border-color: rgba(255, 255, 255, 0.16);
+    }
+
+    input:focus {
+      border-color: rgba(56, 189, 248, 0.55);
+      box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2);
+      background: rgba(8, 12, 24, 0.75);
+    }
+
+    .hint {
+      margin-top: 6px;
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      margin-top: 6px;
+      padding: 14px 18px;
+      border: none;
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #0c1222;
+      cursor: pointer;
+      background: linear-gradient(135deg, #7dd3fc, #38bdf8 45%, #22d3ee);
+      box-shadow: 0 12px 32px rgba(56, 189, 248, 0.35);
+      transition: transform 0.15s, filter 0.15s, opacity 0.2s;
+    }
+
+    button[type="submit"]:hover:not(:disabled) {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    button[type="submit"]:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    button[type="submit"]:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+    }
+
+    .status {
+      margin-top: 16px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      line-height: 1.45;
+      display: none;
+    }
+
+    .status.show {
+      display: block;
+    }
+
+    .status.ok {
+      background: rgba(52, 211, 153, 0.12);
+      border: 1px solid rgba(52, 211, 153, 0.35);
+      color: #a7f3d0;
+    }
+
+    .status.bad {
+      background: rgba(251, 113, 133, 0.12);
+      border: 1px solid rgba(251, 113, 133, 0.35);
+      color: #fecdd3;
+    }
+
+    footer {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: #64748b;
+    }
+
+    code {
+      font-size: 0.85em;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 2px 6px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Оставьте заявку</h1>
+
+    <div class="card">
+      <form id="lead-form" novalidate>
+        <div class="field">
+          <label for="name">Имя *</label>
+          <input id="name" name="name" type="text" autocomplete="name" placeholder="Например, Айгуль" required />
+        </div>
+        <div class="field">
+          <label for="phone">Телефон *</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="+7 700 000 00 00" required />
+        </div>
+        <div class="field">
+          <label for="source">Источник</label>
+          <input id="source" name="source" type="text" autocomplete="off" placeholder="Сайт, реклама, рекомендация…" />
+          <p class="hint">Необязательно — в Telegram попадёт «не указан», если пусто.</p>
+        </div>
+        <button type="submit" id="btn">Отправить заявку</button>
+        <div class="status" id="status" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+
+    <footer>Убедитесь, что сервис запущен: <code>node src/app.js</code></footer>
+  </div>
+
+  <script>
+    (function () {
+      var API = "http://localhost:3000/leads";
+      var form = document.getElementById("lead-form");
+      var btn = document.getElementById("btn");
+      var statusEl = document.getElementById("status");
+
+      function showStatus(ok, text) {
+        statusEl.className = "status show " + (ok ? "ok" : "bad");
+        statusEl.textContent = text;
+      }
+
+      function hideStatus() {
+        statusEl.className = "status";
+        statusEl.textContent = "";
+      }
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+        hideStatus();
+
+        var name = document.getElementById("name").value.trim();
+        var phone = document.getElementById("phone").value.trim();
+        var source = document.getElementById("source").value.trim();
+
+        if (!name || !phone) {
+          showStatus(false, "Заполните имя и телефон.");
+          return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = "Отправка…";
+
+        fetch(API, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: name,
+            phone: phone,
+            source: source || undefined,
+          }),
+        })
+          .then(function (res) {
+            return res.json().then(function (data) {
+              return { ok: res.ok, status: res.status, data: data };
+            });
+          })
+          .then(function (r) {
+            if (r.ok && r.data.success) {
+              showStatus(true, "Заявка отправлена. Проверьте Telegram (и таблицу, если настроена).");
+              form.reset();
+            } else {
+              var msg =
+                (r.data && r.data.error) ||
+                ("Ошибка " + r.status);
+              showStatus(false, msg);
+            }
+          })
+          .catch(function () {
+            showStatus(
+              false,
+              "Не удалось связаться с сервером. Запущен ли API на localhost:3000? Откройте страницу через локальный сервер, если браузер блокирует запрос с file://."
+            );
+          })
+          .finally(function () {
+            btn.disabled = false;
+            btn.textContent = "Отправить заявку";
+          });
+      });
+    })();
+  </script>
+</body>
+</html>
