@@ -207,7 +207,7 @@
 
   <script>
     (function () {
-      var API = "http://localhost:3000/leads";
+      const API = window.location.origin + "/leads";
       var form = document.getElementById("lead-form");
       var btn = document.getElementById("btn");
       var statusEl = document.getElementById("status");
